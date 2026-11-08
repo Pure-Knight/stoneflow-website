@@ -19,3 +19,7 @@ General questions and demonstration enquiries still use the contact email compos
 Push changes to `main` to deploy production; other branches create Cloudflare previews. Only the marketing hostname is attached here. Application hosting remains on Railway and mail-related DNS records must be preserved. No payment, email or infrastructure secrets belong in this public repository. No OpenAI/Sites hosting identity is needed by this independent Cloudflare deployment.
 
 Build locally with Node 22 or newer and `npm run build`. Check the three pages, images, mobile navigation, screenshot viewer, calculator, signup links and contact composer after changes. App lifecycle/security checks live in Pure-Knight/stoneflow (`npm run test:billing`, `npm run test:subscriptions`).
+
+### Marketing hostname and email
+
+`stoneflow.pureknight.co.uk` also receives enquiry mail. Its MX record is preserved. Cloudflare Worker `stoneflow-marketing-router` routes the proxied marketing hostname to the production Pages build at `stoneflow-website.pages.dev`; it streams responses and never forwards browser cookies or authorisation. The route is `stoneflow.pureknight.co.uk/*`. Worker source is `cloudflare/marketing-proxy.js`. Marketing changes deploy automatically through Pages without changing this stable routing code. The two original A records remain available for rollback; only their proxy setting is enabled. Do not replace the mail-enabled hostname with a CNAME or change its MX record.
