@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stoneflow.pureknight.co.uk/sitemap.xml
