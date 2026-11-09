@@ -23,3 +23,7 @@ Build locally with Node 22 or newer and `npm run build`. Check the three pages, 
 ### Marketing hostname and email
 
 `stoneflow.pureknight.co.uk` also receives enquiry mail. Its MX record is preserved. Cloudflare Worker `stoneflow-marketing-router` routes the proxied marketing hostname to the production Pages build at `stoneflow-website.pages.dev`; it streams responses and never forwards browser cookies or authorisation. The route is `stoneflow.pureknight.co.uk/*`. Worker source is `cloudflare/marketing-proxy.js`. Marketing changes deploy automatically through Pages without changing this stable routing code. The two proxied A records use reserved documentation addresses (192.0.2.1 and 192.0.2.2) because the Worker handles requests before origin resolution. The old Sites hostname binding has been removed. Do not replace the mail-enabled hostname with a CNAME or change its MX record.
+
+### Consistent StoneFlow identity
+
+The marketing header, footer and favicon use `dist/assets/stoneflow-mark-original.png`, copied unchanged from the app’s original stone-and-turquoise-ribbon logo. Signup and subscription terms are served securely by the app with the same marketing design and local fonts; their source is in the application repository (`signup-page.js`, `signup-style.css`, `signup-shell.js` and `signup-ui.js`).
