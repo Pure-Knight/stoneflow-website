@@ -27,3 +27,7 @@ Build locally with Node 22 or newer and `npm run build`. Check the three pages, 
 ### Consistent StoneFlow identity
 
 The marketing header, footer and favicon use `dist/assets/stoneflow-mark-original.png`, copied unchanged from the app’s original stone-and-turquoise-ribbon logo. Signup and subscription terms are served securely by the app with the same marketing design and local fonts; their source is in the application repository (`signup-page.js`, `signup-style.css`, `signup-shell.js` and `signup-ui.js`).
+
+### Annual payment upfront
+
+Annual plans cost ten monthly payments: Starter £990, Professional £1,990 and Business £3,990 excluding VAT. The selector shows the full annual charge, monthly equivalent and annual saving, and passes billing_interval=year to signup. Usage allowances remain monthly. The launch hold remains enabled in normal builds. STONEFLOW_PREVIEW_FULL=true generates the full pages for local QA only; do not set it in production until launch is authorised.
