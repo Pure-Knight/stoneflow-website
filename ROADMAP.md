@@ -1,11 +1,9 @@
 # StoneFlow website roadmap
 
-- [x] Product overview, pricing and contact pages with responsive navigation, real demonstration screenshots and interactive previews.
-- [x] Separate public GitHub repository and automatic Cloudflare Pages builds from main.
-- [x] Plan buttons open real subscription signup instead of requesting a trial.
-- [x] Explain automatic trial-to-paid renewal, cancellation and abandoned trial deletion.
-- [x] App implements verified signup, Stripe confirmation and workspace provisioning, lifecycle warnings and protected cleanup.
-- [ ] Connect Stripe credentials and complete real test/live checkout acceptance in the app.
-- [ ] Numerical plan quotas and any annual billing.
-- [ ] Delivered and tested Business-only Sage/Xero export integration.
-- [ ] Direct contact delivery with server validation and spam protection.
+- [x] Public pre-release overview, indicative pricing and demo enquiries.
+- [x] Current product screenshots with example data and workflow through invoicing.
+- [x] Monthly and annual pricing comparison, with all plan buttons leading to demo enquiries.
+- [x] Existing workspace sign-in and Cloudflare Pages deployment from `main`.
+- [ ] Confirm launch prices, allowances and automatic plan entitlements in the app.
+- [ ] Complete paid signup acceptance for monthly and annual billing, VAT, renewals and cancellation.
+- [ ] Open purchasing after launch approval.
