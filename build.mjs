@@ -32,17 +32,21 @@ function page(id, title, description, path, content) {
 <body>${header(id)}<main id="main">${content}</main>${footer}${id === 'home' ? dialog : ''}</body></html>`;
 }
 
+const quotationScreenshot = {
+  name:'multi-plot-quotation', label:'Multi-plot quotation', width:1138, height:708,
+  alt:'StoneFlow quotation editor showing Hawthorn on plots 1–4 and Rowan on plots 5–10, with combined component quantities, unit prices and line totals',
+};
 const screenshots = [
   {name:'sales-orders', label:'Sales orders', alt:'StoneFlow sales order register with accepted work, customer PO references and call-off progress', copy:'Convert a won quotation to a sales order. Record the customer PO, send an acknowledgement and release work by plot, section or quantity.'},
   {name:'production', label:'Production queue', alt:'StoneFlow production queue with call-offs, required dates and production estimates', copy:'Plan against material capacity, mould availability and curing time. Print works orders and record quantities made and ready for despatch.'},
   {name:'deliveries', label:'Delivery notes', alt:'StoneFlow delivery notes register showing delivery destinations, quantities and delivery status', copy:'Build delivery runs and print notes for each load. Capture signatures and photos, and track shortages or replacements.'},
   {name:'invoices', label:'Invoices', alt:'StoneFlow invoice register with draft, issued and paid invoices and outstanding totals', copy:'Draft invoices from confirmed deliveries. Record part-payments and credits, review aged debt and export accounting import files.'},
 ];
-const screenshot = ({name, label, alt}, eager = false) => `<button class="screenshot-button" type="button" data-image="/assets/${name}.webp" aria-label="Enlarge ${label} screenshot"><img src="/assets/${name}.webp" width="1440" height="900" alt="${alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}></button>`;
+const screenshot = ({name, label, alt, width = 1440, height = 900}, eager = false) => `<button class="screenshot-button" type="button" data-image="/assets/${name}.webp" aria-label="Enlarge ${label} screenshot"><img src="/assets/${name}.webp" width="${width}" height="${height}" alt="${alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}></button>`;
 const home = `
 <section class="hero wrap">
   <div class="hero-copy"><p class="eyebrow"><span></span> PRE-RELEASE DEMOS</p><h1>From cast stone enquiry<br>to <em>invoice.</em></h1><p class="lead">Forward an enquiry and StoneFlow drafts the first schedule for your estimator to check. Price it with your own rates, then carry the accepted work through production, delivery and invoicing.</p><div class="actions">${button('Arrange a pre-release demo')}<a class="text-link" href="#product">See StoneFlow in action <span aria-hidden="true">↓</span></a></div></div>
-  <figure class="hero-visual">${screenshot(screenshots[0], true)}<figcaption class="screenshot-note">StoneFlow sales orders · example records</figcaption></figure>
+  <figure class="hero-visual">${screenshot(quotationScreenshot, true)}<figcaption class="screenshot-note">Build one quotation from multiple house types, with quantities and pricing rolled up across plots. Example records shown.</figcaption></figure>
 </section>
 <div class="material-strip"><div class="wrap"><span>SET UP WITH YOUR OWN MATERIALS AND RATES</span><div>Wetcast <i>+</i> Semi-dry <i>+</i> GRC</div></div></div>
 <section class="workflow section"><div class="wrap"><h2>Spend less time building the first quote.</h2><div class="steps">
