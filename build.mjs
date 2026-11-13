@@ -6,14 +6,15 @@ const demo = '/contact/?intent=demo';
 const arrow = '<span aria-hidden="true">↗</span>';
 const money = amount => `£${amount.toLocaleString('en-GB')}`;
 const plans = [
-  {id:'starter', name:'Starter', price:99, desc:'For teams pricing straightforward jobs.', limits:['250', '500', '2 GB'], features:[
+  {id:'starter', name:'Starter', price:99, desc:'For teams pricing straightforward jobs.', limits:['250', '500', '2 GB', '—'], features:[
     'Projects, customers and product library', 'Single-schedule quotes, material rates and mould costs',
     'Branded quotations, revisions and manual follow-ups', 'Basic sales orders with customer PO and full release']},
-  {id:'professional', name:'Professional', price:199, desc:'For estimators handling repeat enquiries and larger sites.', limits:['1,000', '2,500', '10 GB'], features:[
-    'Everything in Starter', 'AI-assisted enquiry and attachment intake', 'House type, plot, floor and elevation schedules',
+  {id:'professional', name:'Professional', price:199, desc:'For estimators handling repeat enquiries and larger sites.', limits:['1,000', '2,500', '10 GB', '£19.90'], features:[
+    'Everything in Starter', 'AI reads emails, PDFs, scans, photos, Word and Excel', 'AI second check that highlights the values to check first',
+    'Replies compared with the earlier quotation', '£19.90 of AI usage a month included, with top-up credit', 'House type, plot, floor and elevation schedules',
     'Combined quotation PDFs and Excel schedules', 'Team reviews, scheduled follow-ups and staged call-offs']},
-  {id:'business', name:'Business', price:399, desc:'For manufacturers managing the factory, despatch and accounts.', limits:['5,000', '10,000', '50 GB'], features:[
-    'Everything in Professional', 'Capacity planning, works orders and production tracking',
+  {id:'business', name:'Business', price:399, desc:'For manufacturers managing the factory, despatch and accounts.', limits:['5,000', '10,000', '50 GB', '£39.90'], features:[
+    'Everything in Professional', '£39.90 of AI usage a month included','Capacity planning, works orders and production tracking',
     'Delivery runs, notes and signed proof of delivery', 'Delivery-based invoicing, payments and credit notes',
     'Accounting import files and operational reports']},
 ];
@@ -50,7 +51,7 @@ const home = `
 </section>
 <div class="material-strip"><div class="wrap"><span>SET UP WITH YOUR OWN MATERIALS AND RATES</span><div>Wetcast <i>+</i> Semi-dry <i>+</i> GRC</div></div></div>
 <section class="workflow section"><div class="wrap"><h2>Spend less time building the first quote.</h2><div class="steps">
-  <article><h3>Forward the enquiry</h3><p>StoneFlow can read supported emails, PDFs, spreadsheets and images, set up a project and draft a component schedule for review. Your estimator checks dimensions, quantities and anything flagged.</p></article>
+  <article><h3>Forward the enquiry</h3><p>StoneFlow can read supported emails, PDFs (including scans), spreadsheets, Word documents and photos, set up a project and draft a component schedule for review. A second AI check marks the values to check first, so your estimator reviews what matters.</p></article>
   <article><h3>Build and price the schedule</h3><p>Use your product library, material rates and mould allowances. Bring in Excel or CSV, or combine reusable house types, plots, floors and elevations into one priced quotation.</p></article>
   <article><h3>Issue and follow up</h3><p>Send branded quotations and track revisions and follow-ups. Customers can accept online with a purchase order. The accepted revision stays linked to the order.</p></article>
 </div></div></section>
@@ -64,16 +65,21 @@ ${button('Arrange a demo', `${demo}&amp;plan=${plan.id}`, index === 1 ? '' : 'ou
 const comparison = [
   ['Single-schedule estimating and basic sales orders', 'Included', 'Included', 'Included'],
   ['AI-assisted enquiry intake and team review', '—', 'Included', 'Included'],
+  ['AI reading of scanned PDFs, photos, screenshots, Word and Excel', '—', 'Included', 'Included'],
+  ['AI second check with “check first” fields', '—', 'Included', 'Included'],
+  ['Customer replies compared with the earlier quotation', '—', 'Included', 'Included'],
   ['Multi-plot and sectional quotes, holds and staged call-offs', '—', 'Included', 'Included'],
   ['Factory planning, works orders and delivery management', '—', '—', 'Included'],
   ['Invoicing, credit notes and accounting import files', '—', '—', 'Included'],
-  ...['Emails per month', 'File saves per month', 'Retained attachment storage'].map((label, i) => [label, ...plans.map(plan => plan.limits[i])]),
+  ...['Emails per month', 'File saves per month', 'Retained attachment storage', 'AI usage included per month'].map((label, i) => [label, ...plans.map(plan => plan.limits[i])]),
+  ['AI top-up credit (never expires)', '—', 'Available', 'Available'],
 ];
 const pricing = `<section class="page-heading wrap centered"><p class="eyebrow">PRE-RELEASE PRICING</p><h1>Choose the workflow<br>that <em>fits.</em></h1><p class="lead">Proposed UK pricing per company workspace, excluding VAT. Plans and allowances will be confirmed at launch. Pre-release demos are available now.</p></section>
-<section class="wrap pricing-section"><label class="billing-frequency">View pricing <select id="billing-frequency"><option value="month">Monthly</option><option value="year">Annual upfront</option></select></label><div class="plans">${cards}</div><p class="pricing-footnote">Proposed annual pricing covers 12 months for the price of 10 monthly payments. Usage allowances stay monthly. Online purchasing and trial signup are closed during pre-release.</p></section>
+<section class="wrap pricing-section"><label class="billing-frequency">View pricing <select id="billing-frequency"><option value="month">Monthly</option><option value="year">Annual upfront</option></select></label><div class="plans">${cards}</div><p class="pricing-footnote">Proposed annual pricing covers 12 months for the price of 10 monthly payments. Usage and AI allowances stay monthly; AI top-up credit is bought separately. Online purchasing and trial signup are closed during pre-release.</p></section>
 <section class="wrap section compare"><div class="section-heading"><h2>Compare the plans.</h2></div><div class="table-scroll" tabindex="0" role="region" aria-label="Proposed plan feature comparison"><table><thead><tr><th scope="col">Proposed features and allowances</th>${plans.map(plan => `<th scope="col">${plan.name}</th>`).join('')}</tr></thead><tbody>${comparison.map(([label, ...cells]) => `<tr><th scope="row">${label}</th>${cells.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>
 <section class="wrap section faq"><h2>Common questions.</h2><div class="faq-grid">
-<details><summary>How does AI-assisted estimating work?</summary><p>Forward a supported enquiry and StoneFlow drafts a schedule for your estimator to review. Your team checks the source and controls what goes into the issued quote.</p></details>
+<details><summary>How does AI-assisted estimating work?</summary><p>Forward a supported enquiry and StoneFlow drafts a schedule for your estimator to review. It reads emails, PDFs (including scans), spreadsheets, Word documents, screenshots and phone photos. A second AI check compares the schedule with the source and marks the values to check first. If a customer replies with changes, StoneFlow shows what differs from the earlier quotation. Your team checks the source and controls what goes into the issued quote.</p></details>
+<details><summary>What does the AI usage allowance cover?</summary><p>Professional includes £19.90 and Business £39.90 of AI usage each month, enough for several hundred typical enquiries. If you use more, scans and photos are read with a standard AI model, and later new enquiries are drafted without AI until the next month. Administrators are emailed before this happens. You can add AI credit at any time; it is only used after the monthly allowance and never expires.</p></details>
 <details><summary>Which accounting packages are supported?</summary><p>StoneFlow generates import files for Xero, Sage 50, QuickBooks Online, FreeAgent and KashFlow. Download the file and import it into your accounting package. Live synchronisation is on the roadmap.</p></details>
 <details><summary>Can I see my workflow in a demo?</summary><p>Yes. Tell us the materials you work with, how your schedules are structured and where you’d like to save time. <a href="${demo}">Arrange a pre-release demo.</a></p></details>
 </div></section>`;
