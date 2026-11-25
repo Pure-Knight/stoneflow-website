@@ -15,8 +15,8 @@ const plans = [
     'Combined quotation PDFs and Excel schedules', 'Team reviews, scheduled follow-ups and staged call-offs']},
   {id:'business', name:'Business', price:399, desc:'For manufacturers managing the factory, despatch and accounts.', limits:['5,000', '10,000', '50 GB', '£39.90'], features:[
     'Everything in Professional', '£39.90 of AI usage a month included','Capacity planning, works orders and production tracking',
-    'Delivery runs, notes and signed proof of delivery', 'Delivery-based invoicing, payments and credit notes',
-    'Accounting import files and operational reports']},
+    'Delivery runs, notes and signed proof of delivery', 'Delivery-based invoices, credit notes, customer accounts and receipts',
+    'Pick and pack, signed delivery and replacement tracking', 'Accounting import files and operational reports']},
 ];
 const brand = `<a class="brand" href="/" aria-label="StoneFlow home"><img src="/assets/stoneflow-mark-original.png" width="56" height="42" alt=""><span>StoneFlow<small>BY PURE KNIGHT</small></span></a>`;
 const button = (label, href = demo, classes = '') => `<a class="button ${classes}" href="${href}">${label} ${arrow}</a>`;
@@ -39,24 +39,33 @@ const quotationScreenshot = {
 };
 const screenshots = [
   {name:'sales-orders', label:'Sales orders', alt:'StoneFlow sales order register with accepted work, customer PO references and call-off progress', copy:'Convert a won quotation to a sales order. Record the customer PO, send an acknowledgement and release work by plot, section or quantity.'},
-  {name:'production', label:'Production queue', alt:'StoneFlow production queue with call-offs, required dates and production estimates', copy:'Plan against material capacity, mould availability and curing time. Print works orders and record quantities made and ready for despatch.'},
-  {name:'deliveries', label:'Delivery notes', alt:'StoneFlow delivery notes register showing delivery destinations, quantities and delivery status', copy:'Build delivery runs and print notes for each load. Capture signatures and photos, and track shortages or replacements.'},
-  {name:'invoices', label:'Invoices', alt:'StoneFlow invoice register with draft, issued and paid invoices and outstanding totals', copy:'Draft invoices from confirmed deliveries. Record part-payments and credits, review aged debt and export accounting import files.'},
+  {name:'production', label:'Production queue', alt:'StoneFlow production queue with call-offs, required dates and production estimates', copy:'Plan against material capacity, mould availability and curing time. Print works orders, require drawing approval and QC where needed, and reserve matching finished stock by location.'},
+  {name:'deliveries', label:'Delivery notes', alt:'StoneFlow delivery notes register showing delivery destinations, quantities and delivery status', copy:'Scan pieces onto labelled pallets and pallets onto the load. Record partial deliveries, capture signed proof and photos, and link shortages and replacements to the original delivery.'},
+  {name:'invoices', label:'Invoices', alt:'StoneFlow invoice register with draft, issued and paid invoices and outstanding totals', copy:'Invoice billable deliveries. Manage customer terms, credit limits, receipts, statements and retentions. Connect Stripe to offer online payment from invoice emails.'},
+];
+const customerScreenshots = [
+  {name:'online-quotation', label:'Online quotation', width:1280, height:1167, alt:'Example customer quotation with a schedule, price summary and response buttons', copy:'Give customers a branded page to review prices, download the PDF, ask a question or accept the quote.'},
+  {name:'quotation-pdf', label:'Branded quotation PDF', width:1684, height:810, alt:'Example cast stone quotation PDF with grouped component lines, VAT and totals', copy:'Issue a revised, branded quotation with component groups, terms and a clear price breakdown.'},
 ];
 const screenshot = ({name, label, alt, width = 1440, height = 900}, eager = false) => `<button class="screenshot-button" type="button" data-image="/assets/${name}.webp" aria-label="Enlarge ${label} screenshot"><img src="/assets/${name}.webp" width="${width}" height="${height}" alt="${alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}></button>`;
 const home = `
 <section class="hero wrap">
-  <div class="hero-copy"><p class="eyebrow"><span></span> PRE-RELEASE DEMOS</p><h1>From cast stone enquiry<br>to <em>invoice.</em></h1><p class="lead">Forward an enquiry and StoneFlow drafts the first schedule for your estimator to check. Price it with your own rates, then carry the accepted work through production, delivery and invoicing.</p><div class="actions">${button('Arrange a pre-release demo')}<a class="text-link" href="#product">See StoneFlow in action <span aria-hidden="true">↓</span></a></div></div>
+  <div class="hero-copy"><p class="eyebrow"><span></span> PRE-RELEASE DEMOS</p><h1>From cast stone enquiry<br>to <em>invoice.</em></h1><p class="lead">Turn enquiries and drawings into reviewed, priced schedules. Carry the accepted quantities through call-offs, manufacture, pallet loading, delivery and invoicing in one system.</p><div class="actions">${button('Arrange a pre-release demo')}<a class="text-link" href="#product">See StoneFlow in action <span aria-hidden="true">↓</span></a></div></div>
   <figure class="hero-visual">${screenshot(quotationScreenshot, true)}<figcaption class="screenshot-note">Build one quotation from multiple house types, with quantities and pricing rolled up across plots. Example records shown.</figcaption></figure>
 </section>
 <div class="material-strip"><div class="wrap"><span>SET UP WITH YOUR OWN MATERIALS AND RATES</span><div>Wetcast <i>+</i> Semi-dry <i>+</i> GRC</div></div></div>
 <section class="workflow section"><div class="wrap"><h2>Spend less time building the first quote.</h2><div class="steps">
-  <article><h3>Forward the enquiry</h3><p>StoneFlow can read supported emails, PDFs (including scans), spreadsheets, Word documents and photos, set up a project and draft a component schedule for review. A second AI check marks the values to check first, so your estimator reviews what matters.</p></article>
-  <article><h3>Build and price the schedule</h3><p>Use your product library, material rates and mould allowances. Bring in Excel or CSV, or combine reusable house types, plots, floors and elevations into one priced quotation.</p></article>
-  <article><h3>Issue and follow up</h3><p>Send branded quotations and track revisions and follow-ups. Customers can accept online with a purchase order. The accepted revision stays linked to the order.</p></article>
+  <article><h3>Forward the enquiry</h3><p>StoneFlow can read supported emails, PDFs (including scans), spreadsheets, Word documents and photos, set up a project and draft a component schedule for review. A second AI check flags values for review. Teach StoneFlow your masonry abbreviations with a workspace and customer dictionary.</p></article>
+  <article><h3>Build and price the schedule</h3><p>Use your product library, material rates and mould allowances. Import Excel or CSV. Draft separate house-type schedules from PDF drawings and combine them using supplied counts or plot allocations. Missing or conflicting scope stays flagged for review.</p></article>
+  <article><h3>Issue and follow up</h3><p>Send branded quotations and track revisions and follow-ups. Customers can review and respond online, including accepting with a purchase order. Keep replies and attachments on the project, with a verified workspace sending address and the estimator’s reply-to on quotations.</p></article>
 </div></div></section>
 <section class="section wrap" id="product"><div class="section-heading"><div><h2>From accepted quote<br>to confirmed delivery.</h2></div><p>Track what’s been released, made, despatched, delivered and invoiced on the same job.</p></div>
-<div class="workflow-shots">${screenshots.map(item => `<article><div>${screenshot(item)}</div><h3>${item.label}</h3><p>${item.copy}</p></article>`).join('')}</div><p class="caption">StoneFlow screenshots using example records. Select a screenshot to enlarge it.</p></section>
+<div class="workflow-shots">${[...screenshots, ...customerScreenshots].map(item => `<article><div>${screenshot(item)}</div><h3>${item.label}</h3><p>${item.copy}</p></article>`).join('')}</div><p class="caption">StoneFlow screenshots using example records. Select a screenshot to enlarge it.</p></section>
+<section class="workflow section"><div class="wrap"><h2>Keep the whole job in view.</h2><div class="steps">
+  <article><h3>Project handovers</h3><p>Keep multiple buyer quotations on one project. Assign tasks and milestones, see customer responses and upcoming work, and subscribe to a private Outlook or Google Calendar feed.</p></article>
+  <article><h3>Cash and credit</h3><p>Set invoice reminders and send monthly statements. Review aged debt and cash-flow forecasts, track contractor valuations and release retention when it falls due. Export accounting import files.</p></article>
+  <article><h3>Workspace controls</h3><p>Set role permissions, use two-factor sign-in and review the workspace activity log. Configure metric or imperial measurements, currency and tax wording. Administrators can download a full workspace export.</p></article>
+</div></div></section>
 <section class="closing wrap"><div><h2>See it on a job<br>like yours.</h2><p>Tell us how you quote and release work. We’ll tailor the walkthrough to your team.</p></div><div>${button('Arrange a pre-release demo')}<a class="text-link" href="/pricing/">Compare proposed plans ${arrow}</a></div></section>`;
 
 const cards = plans.map((plan, index) => `<article class="plan ${index === 1 ? 'featured' : ''}">
@@ -80,7 +89,7 @@ const pricing = `<section class="page-heading wrap centered"><p class="eyebrow">
 <section class="wrap section faq"><h2>Common questions.</h2><div class="faq-grid">
 <details><summary>How does AI-assisted estimating work?</summary><p>Forward a supported enquiry and StoneFlow drafts a schedule for your estimator to review. It reads emails, PDFs (including scans), spreadsheets, Word documents, screenshots and phone photos. A second AI check compares the schedule with the source and marks the values to check first. If a customer replies with changes, StoneFlow shows what differs from the earlier quotation. Your team checks the source and controls what goes into the issued quote.</p></details>
 <details><summary>What does the AI usage allowance cover?</summary><p>Professional includes £19.90 and Business £39.90 of AI usage each month, enough for several hundred typical enquiries. If you use more, scans and photos are read with a standard AI model, and later new enquiries are drafted without AI until the next month. Administrators are emailed before this happens. You can add AI credit at any time; it is only used after the monthly allowance and never expires.</p></details>
-<details><summary>Which accounting packages are supported?</summary><p>StoneFlow generates import files for Xero, Sage 50, QuickBooks Online, FreeAgent and KashFlow. Download the file and import it into your accounting package. Live synchronisation is on the roadmap.</p></details>
+<details><summary>Which accounting packages are supported?</summary><p>StoneFlow generates import files for Xero, Sage 50, QuickBooks Online, FreeAgent and KashFlow. Download the file and import it into your accounting package. Ask us about the accounting import files for your workflow during the demo.</p></details>
 <details><summary>Can I see my workflow in a demo?</summary><p>Yes. Tell us the materials you work with, how your schedules are structured and where you’d like to save time. <a href="${demo}">Arrange a pre-release demo.</a></p></details>
 </div></section>`;
 
@@ -100,3 +109,4 @@ await Promise.all([
   writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/pricing/', '/contact/'].map(path => `<url><loc>${origin}${path}</loc></url>`).join('')}</urlset>\n`),
 ]);
 console.log('Built the StoneFlow pre-release marketing site.');
+
